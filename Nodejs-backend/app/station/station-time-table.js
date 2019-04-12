@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class StationTimeTable {
+    getBusLineStationList(lineID) {
+    }
+    getStationTimeTable(lineID, stationID) {
+    }
+}
+exports.StationTimeTable = StationTimeTable;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RhdGlvbi10aW1lLXRhYmxlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsic3RhdGlvbi10aW1lLXRhYmxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBRUEsTUFBYSxnQkFBZ0I7SUFFekIscUJBQXFCLENBQUMsTUFBYztJQUVwQyxDQUFDO0lBRUQsbUJBQW1CLENBQUMsTUFBYyxFQUFFLFNBQWlCO0lBRXJELENBQUM7Q0FFSjtBQVZELDRDQVVDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTG9nZ2VyIH0gZnJvbSAnLi4vc2hhcmVkL2xvZ2dlcic7XG5cbmV4cG9ydCBjbGFzcyBTdGF0aW9uVGltZVRhYmxlIHtcblxuICAgIGdldEJ1c0xpbmVTdGF0aW9uTGlzdChsaW5lSUQ6IHN0cmluZyl7XG5cbiAgICB9XG4gICAgXG4gICAgZ2V0U3RhdGlvblRpbWVUYWJsZShsaW5lSUQ6IHN0cmluZywgc3RhdGlvbklEOiBzdHJpbmcpe1xuXG4gICAgfVxuXG59Il19
