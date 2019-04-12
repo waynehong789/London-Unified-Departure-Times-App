@@ -1,0 +1,48 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const request = require("request-promise");
+const logger_1 = require("./logger");
+class LondonTransportAPI {
+    constructor() {
+        this.defaultURL = "https://api.tfl.gov.uk/";
+        this.appID = "64cafb9b";
+        this.key = "1824212fb2a19279eb460255ba35966c";
+    }
+    getBusLineStations(lineID) {
+        return new Promise((resolve, reject) => {
+            let url = this.defaultURL + "line/" + lineID + "/StopPoints/";
+            let opts = {
+                uri: url,
+                method: 'GET',
+                qs: {
+                    app_id: this.appID,
+                    app_key: this.key
+                }
+            };
+            request(opts).then((result) => {
+                console.log("Got response from London Transport API: " + result);
+                if (result) {
+                    let data = JSON.parse(result);
+                    if (data.length > 0) {
+                        let stationsData = [];
+                        for (let station of data) {
+                            stationsData.push({
+                                id: station.id,
+                                name: station.commonName
+                            });
+                        }
+                        resolve(stationsData);
+                    }
+                }
+                else {
+                    reject("Can not get bus line stations info from API");
+                }
+            }).catch(err => {
+                logger_1.Logger.log("London Transport API error: ", err);
+                reject(err);
+            });
+        });
+    }
+}
+exports.LondonTransportAPI = LondonTransportAPI;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTG9uZG9uVHJhbnNwb3J0QVBJLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiTG9uZG9uVHJhbnNwb3J0QVBJLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsMkNBQTRDO0FBQzVDLHFDQUFrQztBQU9sQyxNQUFhLGtCQUFrQjtJQUEvQjtRQUVJLGVBQVUsR0FBVyx5QkFBeUIsQ0FBQztRQUUvQyxVQUFLLEdBQVcsVUFBVSxDQUFDO1FBQzNCLFFBQUcsR0FBVyxrQ0FBa0MsQ0FBQztJQXlDckQsQ0FBQztJQXZDVSxrQkFBa0IsQ0FBQyxNQUFjO1FBRXBDLE9BQU8sSUFBSSxPQUFPLENBQUMsQ0FBQyxPQUFPLEVBQUUsTUFBTSxFQUFFLEVBQUU7WUFFbkMsSUFBSSxHQUFHLEdBQUcsSUFBSSxDQUFDLFVBQVUsR0FBRyxPQUFPLEdBQUcsTUFBTSxHQUFHLGNBQWMsQ0FBQztZQUU5RCxJQUFJLElBQUksR0FBb0I7Z0JBQ3hCLEdBQUcsRUFBRSxHQUFHO2dCQUNSLE1BQU0sRUFBRSxLQUFLO2dCQUNiLEVBQUUsRUFBRTtvQkFDQSxNQUFNLEVBQUUsSUFBSSxDQUFDLEtBQUs7b0JBQ2xCLE9BQU8sRUFBRSxJQUFJLENBQUMsR0FBRztpQkFDcEI7YUFDSixDQUFBO1lBRUQsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDLElBQUksQ0FBQyxDQUFDLE1BQU0sRUFBRSxFQUFFO2dCQUMxQixPQUFPLENBQUMsR0FBRyxDQUFDLDBDQUEwQyxHQUFHLE1BQU0sQ0FBQyxDQUFDO2dCQUNqRSxJQUFJLE1BQU0sRUFBRTtvQkFDUixJQUFJLElBQUksR0FBRyxJQUFJLENBQUMsS0FBSyxDQUFDLE1BQU0sQ0FBQyxDQUFDO29CQUM5QixJQUFHLElBQUksQ0FBQyxNQUFNLEdBQUcsQ0FBQyxFQUFDO3dCQUNmLElBQUksWUFBWSxHQUFvQixFQUFFLENBQUM7d0JBQ3ZDLEtBQUksSUFBSSxPQUFPLElBQUksSUFBSSxFQUFDOzRCQUNwQixZQUFZLENBQUMsSUFBSSxDQUFDO2dDQUNkLEVBQUUsRUFBRSxPQUFPLENBQUMsRUFBRTtnQ0FDZCxJQUFJLEVBQUUsT0FBTyxDQUFDLFVBQVU7NkJBQzNCLENBQUMsQ0FBQTt5QkFDTDt3QkFDRCxPQUFPLENBQUMsWUFBWSxDQUFDLENBQUM7cUJBQ3pCO2lCQUNKO3FCQUFJO29CQUNELE1BQU0sQ0FBQyw2Q0FBNkMsQ0FBQyxDQUFDO2lCQUN6RDtZQUVMLENBQUMsQ0FBQyxDQUFDLEtBQUssQ0FBQyxHQUFHLENBQUMsRUFBRTtnQkFDWCxlQUFNLENBQUMsR0FBRyxDQUFDLDhCQUE4QixFQUFFLEdBQUcsQ0FBQyxDQUFDO2dCQUNoRCxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUM7WUFDaEIsQ0FBQyxDQUFDLENBQUE7UUFDTixDQUFDLENBQUMsQ0FBQTtJQUNOLENBQUM7Q0FDSjtBQTlDRCxnREE4Q0MiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgcmVxdWVzdCA9IHJlcXVpcmUoJ3JlcXVlc3QtcHJvbWlzZScpO1xuaW1wb3J0IHsgTG9nZ2VyIH0gZnJvbSAnLi9sb2dnZXInO1xuXG5leHBvcnQgaW50ZXJmYWNlIFN0YXRpb257XG4gICAgaWQ/OiBzdHJpbmc7XG4gICAgbmFtZT86IHN0cmluZztcbiAgfVxuXG5leHBvcnQgY2xhc3MgTG9uZG9uVHJhbnNwb3J0QVBJIHtcblxuICAgIGRlZmF1bHRVUkw6IHN0cmluZyA9IFwiaHR0cHM6Ly9hcGkudGZsLmdvdi51ay9cIjtcblxuICAgIGFwcElEOiBzdHJpbmcgPSBcIjY0Y2FmYjliXCI7XG4gICAga2V5OiBzdHJpbmcgPSBcIjE4MjQyMTJmYjJhMTkyNzllYjQ2MDI1NWJhMzU5NjZjXCI7XG5cbiAgICBwdWJsaWMgZ2V0QnVzTGluZVN0YXRpb25zKGxpbmVJRDogc3RyaW5nKTogUHJvbWlzZTxhbnk+IHtcblxuICAgICAgICByZXR1cm4gbmV3IFByb21pc2UoKHJlc29sdmUsIHJlamVjdCkgPT4ge1xuXG4gICAgICAgICAgICBsZXQgdXJsID0gdGhpcy5kZWZhdWx0VVJMICsgXCJsaW5lL1wiICsgbGluZUlEICsgXCIvU3RvcFBvaW50cy9cIjtcblxuICAgICAgICAgICAgbGV0IG9wdHM6IHJlcXVlc3QuT3B0aW9ucyA9IHtcbiAgICAgICAgICAgICAgICB1cmk6IHVybCxcbiAgICAgICAgICAgICAgICBtZXRob2Q6ICdHRVQnLFxuICAgICAgICAgICAgICAgIHFzOiB7XG4gICAgICAgICAgICAgICAgICAgIGFwcF9pZDogdGhpcy5hcHBJRCxcbiAgICAgICAgICAgICAgICAgICAgYXBwX2tleTogdGhpcy5rZXlcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICB9XG5cbiAgICAgICAgICAgIHJlcXVlc3Qob3B0cykudGhlbigocmVzdWx0KSA9PiB7XG4gICAgICAgICAgICAgICAgY29uc29sZS5sb2coXCJHb3QgcmVzcG9uc2UgZnJvbSBMb25kb24gVHJhbnNwb3J0IEFQSTogXCIgKyByZXN1bHQpO1xuICAgICAgICAgICAgICAgIGlmIChyZXN1bHQpIHtcbiAgICAgICAgICAgICAgICAgICAgbGV0IGRhdGEgPSBKU09OLnBhcnNlKHJlc3VsdCk7XG4gICAgICAgICAgICAgICAgICAgIGlmKGRhdGEubGVuZ3RoID4gMCl7XG4gICAgICAgICAgICAgICAgICAgICAgICBsZXQgc3RhdGlvbnNEYXRhIDogQXJyYXk8U3RhdGlvbj4gPSBbXTtcbiAgICAgICAgICAgICAgICAgICAgICAgIGZvcihsZXQgc3RhdGlvbiBvZiBkYXRhKXtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdGF0aW9uc0RhdGEucHVzaCh7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlkOiBzdGF0aW9uLmlkLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBuYW1lOiBzdGF0aW9uLmNvbW1vbk5hbWVcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9KVxuICAgICAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgICAgICAgcmVzb2x2ZShzdGF0aW9uc0RhdGEpO1xuICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgfWVsc2V7XG4gICAgICAgICAgICAgICAgICAgIHJlamVjdChcIkNhbiBub3QgZ2V0IGJ1cyBsaW5lIHN0YXRpb25zIGluZm8gZnJvbSBBUElcIik7XG4gICAgICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICB9KS5jYXRjaChlcnIgPT4ge1xuICAgICAgICAgICAgICAgIExvZ2dlci5sb2coXCJMb25kb24gVHJhbnNwb3J0IEFQSSBlcnJvcjogXCIsIGVycik7XG4gICAgICAgICAgICAgICAgcmVqZWN0KGVycik7XG4gICAgICAgICAgICB9KVxuICAgICAgICB9KVxuICAgIH1cbn0iXX0=

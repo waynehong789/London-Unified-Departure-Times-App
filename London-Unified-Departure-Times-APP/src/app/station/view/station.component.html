@@ -1,0 +1,14 @@
+<div style="text-align:center">
+  <img width="500" alt="Logo" src="../assets/LondonBus.jpg">
+  <h4> You can search bus line and station's time table from here.</h4>
+  <p> Please select the line </p>
+  <mat-form-field>
+    <mat-label>Bus Line</mat-label>
+    <mat-select [(ngModel)]="selectedBusLineID" (ngModelChange)="getBusLineStations()">
+      <mat-option *ngFor="let busLine of busLines" [value]="busLine.id">
+        {{busLine.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
