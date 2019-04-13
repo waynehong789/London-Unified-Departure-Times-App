@@ -5,10 +5,13 @@ import { StationComponent } from './station.component';
 import { StationListComponent } from './station-list.component';
 import { StationRoutingModule } from './station-routing.modile';
 import { MatToolbarModule, MatButtonModule, MatDividerModule, MatFormFieldModule, MatInputModule, MatCardModule, MatDialogModule, MatTableModule, MatIconModule, MatPaginatorModule, MatBadgeModule, MatBottomSheetModule, MatButtonToggleModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatExpansionModule, MatGridListModule, MatListModule, MatMenuModule, MatNativeDateModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatStepperModule, MatTabsModule, MatTooltipModule, MatTreeModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { StationTimeTableComponent } from './station-time-table.component';
 
 @NgModule({
     imports: [
         CommonModule,
+        FlexLayoutModule,
         FormsModule,
         MatFormFieldModule,
         StationRoutingModule,
@@ -49,10 +52,14 @@ import { MatToolbarModule, MatButtonModule, MatDividerModule, MatFormFieldModule
     ],
     declarations: [
         StationListComponent,
-        StationComponent
+        StationComponent,
+        StationTimeTableComponent
     ],
     exports: [
 
+    ],
+    entryComponents: [
+        StationTimeTableComponent
     ]
 
 })

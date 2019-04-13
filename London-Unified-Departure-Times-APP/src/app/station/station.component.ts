@@ -20,6 +20,8 @@ export class StationComponent extends StationSuper implements OnInit {
 
   public selectedBusLineID: string = "";
   public busLines: Array<BusLine> = [];
+  title = 'London Unified Departure Times APP';
+
 
   constructor(stationService: StationService, injector: Injector) { 
     super(stationService, injector)
@@ -31,11 +33,18 @@ export class StationComponent extends StationSuper implements OnInit {
 
   async getBusLineStations(){
     if(this.selectedBusLineID){
-      let stations: Array<Station> = await this.stationService.getBusLineStations(this.selectedBusLineID);
-      //console.log("Got bus line stations: " + stations);
-      if(stations && stations.length > 0){
-        this.stations = stations;
-        this.navigateList();
+      try{
+        this.busLine = BusLines.find(busLine => busLine.id === this.selectedBusLineID);
+        this.loading = true;
+        let stations: Array<Station> = await this.stationService.getBusLineStations(this.selectedBusLineID);
+        //console.log("Got bus line stations: " + stations);
+        if(stations && stations.length > 0){
+          this.loading = false;
+          this.stations = stations;
+          this.navigateList();
+        }
+      }catch(err){
+        console.log(err);
       }
     }
   }

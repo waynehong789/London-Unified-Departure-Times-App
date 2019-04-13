@@ -1,0 +1,38 @@
+<div fxLayout="column">
+    <h1 mat-dialog-title [draggable] dragTarget=".mat-dialog-container">{{busName}} Time Table</h1>
+    <div *ngIf="timeTable">
+        <div mat-dialog-content fxLayout="column" fxLayoutGap="12px" fxLayoutAlign="space-around center">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <!-- Date Column -->
+                <ng-container matColumnDef="Date">
+                    <th mat-header-cell *matHeaderCellDef>Date</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.date}}
+                    </td>
+                </ng-container>
+
+                <!-- First Journey Column -->
+                <ng-container matColumnDef="First Journey">
+                    <th mat-header-cell *matHeaderCellDef>First Journey</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.first}}
+                    </td>
+                </ng-container>
+
+                <!-- Last Journey Column -->
+                <ng-container matColumnDef="Last Journey">
+                    <th mat-header-cell *matHeaderCellDef>Last Journey</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.last}}
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <div fxLayoutAlign="end end" fxLayoutGap="24px" mat-dialog-actions>
+            <button mat-button color="primary" mat-dialog-close>Close</button>
+        </div>
+    </div>
+</div>

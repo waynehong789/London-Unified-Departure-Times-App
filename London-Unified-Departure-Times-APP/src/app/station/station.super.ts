@@ -1,9 +1,13 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { StationService } from './service/station.service';
-import { Station } from '../shared/dataModels';
+import { Station, BusLine } from '../shared/dataModels';
 import { Router, ActivatedRoute } from '@angular/router';
 
 export class StationSuper {
+
+    stationCtrl: StationSuper = this;
+
+    loading = false;
 
     get stations(): Array<Station> {
         return this.stationService.stations;
@@ -15,6 +19,15 @@ export class StationSuper {
 
     public router: Router 
     protected route: ActivatedRoute
+    public selectedBusLineName: string
+
+    set busLine(busLine: BusLine){
+        this.stationService.busLine = busLine;
+    }
+
+    get busLine(){
+        return this.stationService.busLine;
+    }
 
     constructor( public stationService: StationService, protected injector: Injector) {
         this.route = injector.get(ActivatedRoute);

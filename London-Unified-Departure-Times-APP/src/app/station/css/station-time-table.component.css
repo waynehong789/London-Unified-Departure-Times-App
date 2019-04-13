@@ -1,11 +1,8 @@
-
-
 table {
-    width: 80%;
+    width: 100%;
     table-layout: fixed;
   }
-  
-  
+
 th.mat-header-cell {
     font-weight: bold;
     text-align: center;
@@ -16,3 +13,7 @@ th.mat-header-cell {
 tr.mat-header-row {
     background-color: rgb(221, 16, 16);
   }
+
+td.mat-cell{
+    text-align: center;
+}

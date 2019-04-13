@@ -19,7 +19,12 @@ export class StationController {
     }
     
     public async getStationTimeTable(lineID: string, stationID: string){
-
+        try{
+            let timeTable = await this.londonTransportAPI.getStationTimeTable(lineID,stationID);
+            return timeTable;
+        }catch(err){
+            throw new Error(err);
+        }
     }
 
 }

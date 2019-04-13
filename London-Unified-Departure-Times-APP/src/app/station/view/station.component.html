@@ -1,7 +1,10 @@
-<div style="text-align:center">
+<div class="select-bus-line">
+  <h1 class="page-header">
+    Welcome to {{ title }}
+  </h1>
   <img width="500" alt="Logo" src="../assets/LondonBus.jpg">
   <h4> You can search bus line and station's time table from here.</h4>
-  <p> Please select the line </p>
+  <p> Please select bus line </p>
   <mat-form-field>
     <mat-label>Bus Line</mat-label>
     <mat-select [(ngModel)]="selectedBusLineID" (ngModelChange)="getBusLineStations()">
@@ -10,5 +13,9 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+</div>
+
+<div *ngIf="loading" class="loading">
+    <mat-spinner ></mat-spinner>
 </div>
 
