@@ -15,6 +15,7 @@ There is one component package - "station". It shows each bus stop's time table 
 <b>Back End</b>: Nodejs 11 with Express, RESTful API
 
 There is one controller supporting API for "station". It can provide London transport data for different services.
+And of cause, it will keep all the log for any error.
 
 <b>App start command</b>:   
 1. pull and run "npm install" one each in "London-Unified-Departure-Times-APP" and "Nodejs-backend"
