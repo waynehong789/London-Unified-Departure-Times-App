@@ -48,6 +48,7 @@ export class LondonTransportAPI {
                         resolve(stationsData);
                     }
                 }else{
+                    Logger.log("Can not get bus line stations info from API");
                     reject("Can not get bus line stations info from API");
                 }
 
@@ -92,12 +93,15 @@ export class LondonTransportAPI {
                             }//for
                             resolve(timeTableData);
                         }else{
+                            Logger.log("Bus line stations time table data error");
                             reject("Bus line stations time table data error");
                         }
                     }else{
+                        Logger.log("Bus line stations time table data error");
                         reject("Bus line stations time table data error");
                     }
                 }else{
+                    Logger.log("Can not get bus line stations time table info from API");
                     reject("Can not get bus line stations time table info from API");
                 }
             }).catch(err => {
