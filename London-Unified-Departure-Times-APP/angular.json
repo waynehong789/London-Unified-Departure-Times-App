@@ -59,7 +59,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "London-Unified-Departure-Times-APP:build"
+            "browserTarget": "London-Unified-Departure-Times-APP:build",
+            "proxyConfig": "./proxy.json"
           },
           "configurations": {
             "production": {

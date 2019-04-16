@@ -7,7 +7,7 @@
   <p> Please select bus line </p>
   <mat-form-field>
     <mat-label>Bus Line</mat-label>
-    <mat-select [(ngModel)]="selectedBusLineID" (ngModelChange)="getBusLineStations()">
+    <mat-select name="busLine" [(ngModel)]="selectedBusLineID" (ngModelChange)="getBusLineStations()">
       <mat-option *ngFor="let busLine of busLines" [value]="busLine.id">
         {{busLine.name}}
       </mat-option>
