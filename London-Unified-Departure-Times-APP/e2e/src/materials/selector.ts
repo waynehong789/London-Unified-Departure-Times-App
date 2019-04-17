@@ -4,11 +4,7 @@ export class Selector {
     dropdown:ElementFinder;
     //constructor  accepts dropdown as element
     constructor(dropdownElement:ElementFinder) {
-		// assign block variable to the global variable
        this.dropdown = dropdownElement;
-       // click the dropdown
-       //dropdownElement.click()
-       //browser.sleep(1000)
     }
     public selectByIndex(index:number){
         index = index + 1;
@@ -21,13 +17,11 @@ export class Selector {
         return new Promise<number>((resolveAll, rejectAll) => {
             let id = 0;
             let options = element.all(by.tagName('mat-option'));
-            //console.log("options:  " , options);
             let promiseChain: Promise<any> = Promise.resolve(null);
             for (let i = 0; i < totalNumber; i++) {
               promiseChain = promiseChain.then(() => {
                 return new Promise<any>((resolve, reject) => {
                   options.get(i).getText().then((name) => {
-                    //console.log("option name: ", name);
                     if (name === selectName) {
                       id = i;
                       resolve();

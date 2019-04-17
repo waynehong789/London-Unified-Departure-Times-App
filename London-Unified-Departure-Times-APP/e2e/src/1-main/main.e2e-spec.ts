@@ -15,7 +15,7 @@ describe('workspace-project App', () => {
 
   it('Select bus line - should navigate to bus line stations list view', async () => {
     await page.selectBusLine();
-    browser.sleep(5000);
+    browser.sleep(8000);
     let _url = await browser.driver.getCurrentUrl();
     expect(_url).toEqual("http://localhost:5000/stations");
   });
