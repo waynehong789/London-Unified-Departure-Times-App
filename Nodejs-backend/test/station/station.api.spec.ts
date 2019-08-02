@@ -7,7 +7,7 @@ let should = chai.should();
 describe('Station API Testing', () => {
 
     let busLineID: string = "469";
-    let stationID: string = "490001001Z"
+    let stationID: string = "490001001D"
 
     beforeEach(async () => {
 
